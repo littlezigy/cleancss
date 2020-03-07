@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>CSS Lint</title>
+    <title>CleanCSS</title>
     <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'>
+    <link rel = 'shortcut icon' href = 'favicons/favicon.ico'>
+    <link rel = 'apple-touch-icon' sizes = '180x180' href = 'favicons/apple-touch-icon.png'>
+    <link rel = 'manifest' href = 'favicons/site.webmanifest'>
+    <link rel = 'stylesheet' href = './style.css'>
+
+    <script>
+        let module = {exports: {}}; 
+    </script>
+
 </head>
 
 <body>
-<textarea></textarea>
+<div id = 'top'>
+    <h1>CleanCSS by Adesuwa</h1>
+    <p class = 'subtitle'>npm i @littlezigy/cleancss</p>
+</div>
+<label for = 'css'>Press ctrl + Enter to leave this field</label>
+<textarea id = 'css' placeholder = 'Enter or Paste CSS'></textarea>
+<button onclick = 'cleanupcss()'  id='submit'>Clean up CSS</button>
+
+<script src = './js/css_lint.js'></script>
+<script src = './main.js'></script>
 </body>
 </html>
