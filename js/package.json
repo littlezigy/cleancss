@@ -1,0 +1,18 @@
+{
+  "name": "cleanercss",
+  "version": "1.0.1",
+  "description": "A CSS Linter",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon --exec 'jest --runInBand'"
+  },
+  "keywords": [
+    "css",
+    "lint"
+  ],
+  "author": "Adesuwa Dawodu",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^25.1.0"
+  }
+}
