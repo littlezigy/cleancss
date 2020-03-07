@@ -29,5 +29,5 @@ jobs:
       - name: Deploy on CodeDeploy
         run: |
             aws deploy push --application-name test2 --s3-location s3://codedeploy.ubuntu/cleancss.zip
-            deployment_id=$(aws deploy create-deployment --application-name test2 --deployment-group-name "PushtoUbuntu1_Second" --s3-location bucket=codedeploy.ubuntu,key=scheduler_frontend.zip,bundleType=zip --query "deploymentId" --output text)
+            deployment_id=$(aws deploy create-deployment --application-name test2 --deployment-group-name "cleancss" --s3-location bucket=codedeploy.ubuntu,key=scheduler_frontend.zip,bundleType=zip --query "deploymentId" --output text)
             aws deploy wait deployment-successful --deployment-id $deployment_id
