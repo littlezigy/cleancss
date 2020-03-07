@@ -1,5 +1,5 @@
 {
-  "name": "cleanercss",
+  "name": "@littlezigy/cleancss",
   "version": "1.0.1",
   "description": "A CSS Linter",
   "main": "index.js",
