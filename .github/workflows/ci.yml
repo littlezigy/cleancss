@@ -1,0 +1,33 @@
+on: [push]
+
+jobs:
+  deploy:
+    name: Upload to Amazon S3 Bucket
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Zip up files
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y zip
+          zip -r cleancss.zip -r . -x tests/* package.json package-lock.json
+
+      - name: Copy files to S3 with the AWS CLI
+        run: |
+          aws s3 cp cleancss.zip s3://codedeploy.ubuntu
+
+      - name: Deploy on CodeDeploy
+        run: |
+            aws deploy push --application-name test2 --s3-location s3://codedeploy.ubuntu/cleancss.zip
+            deployment_id=$(aws deploy create-deployment --application-name test2 --deployment-group-name "PushtoUbuntu1_Second" --s3-location bucket=codedeploy.ubuntu,key=scheduler_frontend.zip,bundleType=zip --query "deploymentId" --output text)
+            aws deploy wait deployment-successful --deployment-id $deployment_id
