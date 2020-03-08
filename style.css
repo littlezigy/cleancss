@@ -1,6 +1,8 @@
 :root {
     --pink: pink;
     --blue: skyblue;
+    --purple: mediumpurple;
+    --darkblue: #043faf;
 }
 
 html, body, div, p, main, span, a{
@@ -48,4 +50,25 @@ label {
     margin: auto;
     width: fit-content;
     display: block;
+}
+
+div#results {
+    border: 1px solid var(--purple);
+    border-left: 2rem solid var(--purple);
+    padding: 3rem;
+    font-size: 1.5rem;
+    width: 80%;
+    margin: 5rem auto;
+}
+div#results span.tag {
+    padding-left: 0.3em;
+    background: lightgrey;
+}
+div#results span.property {
+    color: var(--darkblue);
+    font-weight: bold;
+}
+div#results .title {
+    text-align: center;
+    font-size: 2rem;
 }

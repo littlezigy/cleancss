@@ -7,14 +7,20 @@ module.exports = {
         return newcss;
     },
     check_duplicate_properties: function(css) {
-        let cssString = module.exports.trim(css);
-
         //Split rules into arrays
-        let rules = cssString.match(/(?<={).*?(?=})/g);
+        let rules = css.match(/(?<={).*?(?=})/g);
+        let rulenames = css.match(/(((?!}).)*)?(?={)/g);
+        rulenames = rulenames.filter((entry)=> {return entry.trim() != '';});
+
+        //console.log("Elements", rulenames);
         //console.log("Rules are rules.\n", rules);
+
+        let duplicates = {};
 
         //Split properties for each rule into arrays, purge property vaules.
         for (let i = 0; i<rules.length; i++) {
+            //console.log("Run", i, "of", rules.length, "for rules:", rules[i])k
+            rulenames[i] = rulenames[i].trim();
             let properties = rules[i].match(/(((?!;)[^\s+])*)(?=:)/g);
             properties = properties.filter((entry)=> {return entry.trim() != '';});
             //console.log("Properties", properties);
@@ -22,15 +28,17 @@ module.exports = {
             properties.sort((a, b) => a.localeCompare(b));
 
             //console.log("Sorted properties", properties);
+            let tempArr = [];
 
-            let duplicates = [];
 
-            for(let i = 0; i< properties.length; i++) {
-                if (properties[i + 1] == properties[i]) {
-                    duplicates.push(properties[i]);
+            for(let j = 0; j< properties.length; j++) {
+                if (properties[j + 1] == properties[j]) {
+                    tempArr.push(properties[j]);
                 }
             }
-            return duplicates;
+            if(tempArr.length) duplicates[rulenames[i]] = tempArr;
         }
+        //console.log("DUPLICATES", duplicates);
+        return duplicates;
     }
 }

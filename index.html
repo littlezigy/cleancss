@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang='en'>
 <head>
     <title>CleanCSS</title>
     <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'>
@@ -23,7 +23,14 @@
 <textarea id = 'css' placeholder = 'Enter or Paste CSS'></textarea>
 <button onclick = 'cleanupcss()'  id='submit'>Clean up CSS</button>
 
-<script src = './js/css_lint.js'></script>
-<script src = './main.js'></script>
+<div id = 'results' style = 'display: none;'>
+    <p class = 'title'>Results</p>
+
+</div>
+
+<footer>
+    <script src = './js/css_lint.js'></script>
+    <script src = './main.js'></script>
+</footer>
 </body>
 </html>
